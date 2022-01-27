@@ -1,0 +1,276 @@
+[
+    {
+        "query": " Q27. You created a new Linux EC2 instance and installed PostgreSQL but you are not able to establish a connection to the server from your local computer. What steps do you take to resolve this issue?",
+        "options": [
+            " Create a security group rule that allows all traffic from 0.0.0.0/0. This will verify whether or not another rule is denying the traffic.\r\n",
+            " Verify that the assigned security groups allow traffic from your IP address to port 5432. Verify that PostgreSQL is configured to listen to external traffic and is bound to the public interface.\r\n",
+            " Make sure that you are using an Elastic IP and that it is included within the `postgresql.conf` configuration file.\r\n",
+            " Stop and start the instance. New security group rules will only take effect after a restart.\r\n\r\n"
+        ],
+        "correctAns": 2,
+        "difficulty": "Hard"
+    },
+    {
+        "query": " Q28. What does the statement body of this S3 bucket policy do?",
+        "code": "json\r\n{\r\n  \"Sid\": \"bucketpolicy1\",\r\n  \"Effect\": \"Allow\",\r\n  \"Principal\": \"*\",\r\n  \"Action\": \"s3:GetObject\",\r\n  \"Resource\": \"arn:aws:s3:::userreports/*\",\r\n  \"Condition\": {\r\n    \"IpAddress\": { \"aws:SourceIp\": \"68.249.108.0/24\" },\r\n    \"NotIpAddress\": { \"aws:SourceIp\": \"68.249.108.128/32\" }\r\n  }\r\n}\r\n",
+        "options": [
+            " bucketpolicy1 allows any user to perform any action on the objects in the userreports bucket, but limits the objects to read-only permissions for anyone coming from 68.249.108.0 to 68.249.108.255 - except 68.249.108.128.\r\n",
+            " bucketpolicy1 allows any user coming from the IP range of 68.249.108.0 to access objects in the userreports bucket and denies access to 68.249.108.128.\r\n",
+            " bucketpolicy1 allows any user to perform any action on the objects in the userreports bucket - except anyone coming from the IP of 68.249.108.128.\r\n",
+            " bucketpolicy1 allows any user coming from the IP range of 68.249.108.0 to 68.249.108.255 to access objects in the userreports bucket-except anyone coming from the IP of 68.249.108.128.\r\n\r\n"
+        ],
+        "correctAns": 4,
+        "difficulty": "Medium"
+    },
+    {
+        "query": " Q29. A new developer has been added to the team and you have been asked to provide access to the organization's AWS account. What is the best practice for granting access?",
+        "options": [
+            " Give the new developer the IAM login that is assigned to the development team. This IAM user should already include all of the policies that a developer would need.\r\n",
+            " Create a IAM user for the new developer. Manually assign policies to the new IAM user account.\r\n",
+            " Do not give the new developer access to the AWS console. Using the IAM user that is assigned to the development group, generate a new set of access keys and label these with the name of the developer.\r\n",
+            " Create a IAM user for the new developer. Assign the new developer the a developer group you already created for the other developers.\r\n\r\n"
+        ],
+        "correctAns": 4,
+        "difficulty": "Easy"
+    },
+    {
+        "query": " Q30. When launching an EC2 instance with an instance type that supports instance storage, what use case is best for instance storage?",
+        "options": [
+            " Use the instance storage to serve temporary files that require low I/O latency.\r\n",
+            " Use the instance storage to handle files uploaded by your users. Since it is more secure than an EBS volume, you can isolate any malicious files from infecting your server.\r\n",
+            " Instance storage is faster than EBS volumes, so install the root of the operating system on this volume to speed up server performance.\r\n",
+            " Instance storage is a deprecated option for storage and should not be used.\r\n\r\n"
+        ],
+        "correctAns": 1,
+        "difficulty": "Medium"
+    },
+    {
+        "query": " Q31. What's the best practice for horizontally scaling a legacy ASP.NET web application that relies on Active Directory and is currently deployed to a single Windows EC2 instance?",
+        "options": [
+            " Use Sysprep to shut down the instance during a maintenance window. Create an AMI image and place both servers behind Application Load Balancer with sticky sessions.\r\n",
+            " Launch a new EC2 with the latest version of Windows Server and install the application again. Use Application Load Balancer and sticky sessions to balance between both servers.\r\n",
+            " Create a clone of the server using an AMI image and user Application Load Balancer to balance the traffic between both instances using sticky sessions.\r\n",
+            " Horizontal scaling is not the best practice in this situation. Increase the size of the existing EC2 instance and vertically scale the application.\r\n\r\n"
+        ],
+        "correctAns": 1,
+        "difficulty": "Hard"
+    },
+    {
+        "query": " Q32. What does this small section of a CloudFormation template do?",
+        "code": "yaml\r\nFlowLog:\r\n  Type: AWS::EC2::FlowLog\r\n  Properties:\r\n    DeliverLogsPermissionArn: !GetAtt IamRole.Arn\r\n    LogGroupName: FlowLogsGroup\r\n    ResourceId: !Ref LogVpcId\r\n    ResourceType: VPC\r\n    TrafficType: ALL\r\n",
+        "options": [
+            " It writes the VPC network flow logs to the CloudWatch FlowLogsGroup log group. You could use this to inspect the network connections of your VPC.\r\n",
+            " It logs all of the network traffic within a VPC except Instance IDs defined by LogVpcID and logs it to the CloudWatch FlowLogsGroup log group.\r\n",
+            " It logs all the network traffic going to and from a single EC2 instance into the CloudWatch FlowLogsGroup log group. You could use this to inspect suspicious network traffic coming into an EC2 instance.\r\n",
+            " It logs all of the DNS requests made by resources within a VPC and logs them to the CloudWatch FlowLogsGroup. Use this to diagnose DNS lookup errors within your environment.\r\n\r\n"
+        ],
+        "correctAns": 1,
+        "difficulty": "Medium"
+    },
+    {
+        "query": " Q33. You are running Docker containers on ECS. What is the most important metric to monitor?",
+        "options": [
+            " The running container count for each service from within CloudWatch.\r\n",
+            " The instance health of each EC2 instance in your cluster from within CloudWatch.\r\n",
+            " Monitor the EC2 service dashboard. Watch for posted outages to the ECS service.\r\n",
+            " The memory consumption of each EC2 instance in your cluster from within CloudWatch.\r\n\r\n"
+        ],
+        "correctAns": 4,
+        "difficulty": "Medium"
+    },
+    {
+        "query": " Q34. Application Load Balancer can route traffic to several different target groups based upon several conditions. Which of these use cases is not supported by Application Load Balancer?",
+        "options": [
+            " A request with a HTTP header of X-Requested-With: staging can be routed to a target group for an ECS service in your staging environment.\r\n",
+            " Source IPs matching 192.0.2.0/24 on a listener port of 1433 can be routed to a target group for an RDS for SQL Server cluster.\r\n",
+            " A path of /signup\\* can be routed to a target group for a Lambda function that processes new user registrations.\r\n",
+            " An Http POST query string of ? action=createuser can be routed to a target group for an ECS service.\r\n\r\n"
+        ],
+        "correctAns": 4,
+        "difficulty": "Medium"
+    },
+    {
+        "query": " Q35. What does a VPC do?",
+        "options": [
+            " creates a cloud-based network to interconnect a set of virtual servers and appliances\r\n",
+            " creates a secure tunnel between two networks\r\n",
+            " creates a shared storage plane for application data to be shared across multiple instances.\r\n",
+            " creates a private network that is completely isolated from the public internet.\r\n\r\n"
+        ],
+        "correctAns": 1,
+        "difficulty": "Easy"
+    },
+    {
+        "query": " Q36. Can you lose the public IP address associated with your EC2 instance?",
+        "options": [
+            " Yes, you can lose it if you reboot the instance.\r\n",
+            " Yes, you can lose it if you stop and start the instance.\r\n",
+            " No, you will never lose the public IP address for your instance.\r\n",
+            " Yes, you can lose it when you edit the instance properties and release the IP address.\r\n\r\n"
+        ],
+        "correctAns": 2,
+        "difficulty": "Easy"
+    },
+    {
+        "query": " Q37. Where is the best place to store database backups on an EC2 instance that is configured as a database server?",
+        "options": [
+            " an S3 bucket, synced with the database backups via a script that calls the AWS CLI\r\n",
+            " EBS volume attached to the instance\r\n",
+            " instance attached to the instance\r\n",
+            " instance storage, with a script that replicates the database backups to another instance in a different availability zone.\r\n\r\n"
+        ],
+        "correctAns": 1,
+        "difficulty": "Medium"
+    },
+    {
+        "query": " Q38. Which of these is a valid restriction on the properties of a VPC?",
+        "options": [
+            " You can have only 10 internet gateways per region on a new AWS account.\r\n",
+            " You can have only 10 VPCs per region on a new AWS account\r\n",
+            " You cannot create a CIDR block with a netmask larger than /16\r\n",
+            " You can have only 10 subnets within a VPC\r\n\r\n"
+        ],
+        "correctAns": 3,
+        "difficulty": "Medium"
+    },
+    {
+        "query": " Q39. You have a Linux EC2 instance that is not responding to requests and you can not connect to it via SSH. Using the EC2 console, you issued a command to stop the instance, but for the past 10 minutes the instance has been in the \"stopping\" state. What is the next step you should take?",
+        "options": [
+            " Issue another stop action via the EC2 console, and choose the option to forcefully stop the instance.\r\n",
+            " Create an AMI image of the instance, and choose the option to take the image without restarting the instance.\r\n",
+            " Edit the instance properties and increase the instance size.\r\n",
+            " Contact AWS support. Any further actions could corrupt the file system.\r\n\r\n"
+        ],
+        "correctAns": 1,
+        "difficulty": "Medium"
+    },
+    {
+        "query": " Q40. You have 14 on-premise web servers, 4 database servers, 6 servers using GIS software, 3 file servers, and 4 development servers. What considerations should you take into account when migrating these servers into AWS?",
+        "options": [
+            " AWS does not have a way to separate billing for compute costs, so you will need to design a way to split the budget between departments.\r\n",
+            " New AWS accounts are limited to 20 on-demand EC2 instances. Submit a request to increase your rate limits before starting a migration.\r\n\r\n"
+        ],
+        "correctAns": 2,
+        "difficulty": "Medium"
+    },
+    {
+        "query": " Q41. As your web application grows and your application monitoring needs become more complex, which additional log monitoring service should you NOT consider?",
+        "options": [
+            " ELK stack: Elasticsearch, Loggly, and Kibana\r\n",
+            " PRTG\r\n",
+            " New Relic\r\n",
+            " Datadog\r\n\r\n"
+        ],
+        "correctAns": 2,
+        "difficulty": "Medium"
+    },
+    {
+        "query": " Q42. You have a T2 EC2 instance that is critical to your infrastructure. How would you monitor the most important metric for this instance?",
+        "options": [
+            " Turn on CloudWatch Auto Recovery and put monitors on the System Status and Instance Status checks for the instance to notify you when either is in alarm.\r\n",
+            " Use CloudWatch to put monitors on the remaining CPU credits. If you run out of CPU credit the instance will be stopped.\r\n\r\n"
+        ],
+        "correctAns": 1,
+        "difficulty": "Easy"
+    },
+    {
+        "query": " Q43. Which feature can be used to respond to a sudden increase in web traffic?",
+        "options": [
+            " EC2 Auto Scaling groups\r\n",
+            " AWS Shield Advanced\r\n",
+            " RDS Read Replicas\r\n",
+            " all of these answers\r\n\r\n"
+        ],
+        "correctAns": 4,
+        "difficulty": "Easy"
+    },
+    {
+        "query": " Q44. If a set of servers are located within a private subnet of your VPC, how can you connect those servers to on-premise servers?",
+        "options": [
+            " Establish a connection with AWS Direct Connect.\r\n",
+            " Use the AWS Client VPN.\r\n",
+            " Install a OpenVPN server on an instance that is located within the subnet with an elastic IP.\r\n",
+            " All of these options can establish a connection to a private subnet.\r\n\r\n"
+        ],
+        "correctAns": 4,
+        "difficulty": "Medium"
+    },
+    {
+        "query": " Q45. You have a UDP load balancer that is created by an instance that is running an NGINX proxy. Your application performance management (APM) solution can detect failures in your load balancer instance and transfer the Elastic IP to a passive standby instance. Using the AWS CLI, which script do you program into your APM to move the Elastic IP?",
+        "code": null,
+        "options": [
+            " A\r\n\r\n```\r\naws ec2 disassociate-address --association-id eipassoc-2bebb712\r\naws ec2 associate-address --instance-id i-8b953 --allocation-id eipalloc-02d021a\r\n```\r\n\r\n",
+            " B\r\n\r\n```\r\naws ec2 release-address --association-id eipassoc-2bebb712\r\naws ec2 assign-address --instance-id i-8b953 --allocation-id eipalloc-02d021a\r\n```\r\n\r\n",
+            " C\r\n\r\n```\r\naws ec2 stop-instances --instance-ids i-8b953\r\nwait 30\r\naws ec2 disassociate-address --association-id eipassoc-2bebb712\r\naws ec2 associate-address --instance-id i-8b953 --allocation-id eipalloc-02d021a\r\naws ec2 start-instances --instance-ids i-8b953\r\n```\r\n\r\n",
+            " D\r\n\r\n```\r\naws ec2 release-address --association-id eipassoc-2bebb712\r\naws ec2 associate-address --instance-id i-8b953 --allocation-id eipalloc-02d021a\r\n```\r\n\r\n"
+        ],
+        "correctAns": 1,
+        "difficulty": "Hard"
+    },
+    {
+        "query": " Q46. What service can host your Docker containers?",
+        "options": [
+            " Lightsail\r\n",
+            " Elastic Container Service (ECS)\r\n",
+            " Elastic Compute Cloud (EC2)\r\n",
+            " All of these services can host a Docker container.\r\n\r\n"
+        ],
+        "correctAns": 4,
+        "difficulty": "Easy"
+    },
+    {
+        "query": " Q48. What privilege is specific to the AWS root account, and cannot be granted to another IAM user on the account?",
+        "options": [
+            " Revoke the AdministratorAccess role or grant it to another IAM user.\r\n",
+            " Create a new hosted zone in Route 53.\r\n",
+            " Delete the AWS account.\r\n",
+            " Modify the billing details.\r\n\r\n"
+        ],
+        "correctAns": 3,
+        "difficulty": "Easy"
+    },
+    {
+        "query": " Q49. Your application is sending 50,000 emails through SES each day. Since you must maintain a low bounce rate to avoid being put on probation, what simple system do you architect to automatically process hard bounces?",
+        "options": [
+            " Configure SES to send all bounce events to an SNS topic. Create a Lambda function that processes each hard bounce event and automatically flags that account as a bounce in your application to prevent further sending attempts.\r\n",
+            " Configure SES to no longer send to email addresses that are on your bounce list.\r\n",
+            " Configure SES to send the logs of all delivery attempts through Kinesis Firehose. Process each event and look for bounce types and remove these emails from your list.\r\n",
+            " Send all emails through SES with a custom reply-to header. Configure SES to listen for events on this email address and flag any email address that replies to this account as a bounced message and remove it from your email list.\r\n\r\n"
+        ],
+        "correctAns": 1,
+        "difficulty": "Medium"
+    },
+    {
+        "query": " Q50. Your web application is getting a suspicious amount of bad requests from foreign IP addresses. Your business is operating in only a few countries and you would like to block any other traffic. What is the best practice for limiting access to your web application by country?",
+        "options": [
+            " Use Web Application Firewall and create a geo match condition to drop all requests from countries that aren't on your allow list.\r\n",
+            " Use Application Load Balancer to create a new routing rule that looks at source IP address. Add an IP block for the countries that have access.\r\n",
+            " Host the front end of your website in CloudFront and configure a geo restriction on the distribution.\r\n",
+            " Use CloudTrail to monitor the IP addresses of the bad requests. Use Lambda to add these IP addresses to an Application Load Balancer rule that blocks the IPs.\r\n\r\n"
+        ],
+        "correctAns": 1,
+        "difficulty": "Medium"
+    },
+    {
+        "query": " Q51. What is the best practice for maintaining Windows EC2 instances and applying updates?",
+        "options": [
+            " Turn on auto update in Windows Update on each EC2 that is launched, or create your own AMI with this feature enabled and launch all of your EC2 instances from this AMI.\r\n",
+            " Create a maintenance schedule that an employee must fill out each week confirming a visual inspection of each instance was conducted and which patches were applied.\r\n",
+            " Use AWS Systems Manager Patch Manager to find an patch instances that require updates during a set maintenance window.\r\n",
+            " Install Window Server Update Services on your primary Active Directory controller.\r\n\r\n"
+        ],
+        "correctAns": 3,
+        "difficulty": "Hard"
+    },
+    {
+        "query": " Q52. In addition to CloudFormation, you can use other orchestration tools to automate server formation and maintenance. Which tool is _not_ an efficient choice for the orchestration of a large infrastructure?",
+        "options": [
+            " Chef\r\n",
+            " Ansible\r\n",
+            " Puppet\r\n",
+            " Vagrant\r\n\r\n"
+        ],
+        "correctAns": 4,
+        "difficulty": "Medium"
+    }
+]
