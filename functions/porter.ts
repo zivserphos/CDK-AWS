@@ -3,7 +3,7 @@ import * as AWS from "aws-sdk";
 
 exports.handler = async (event: SQSEvent): Promise<APIGatewayProxyResult> => {
   const S3 = new AWS.S3();
-  const bucketName = "reports-cymotive1";
+  const bucketName = "reports-cymotive1.1";
   console.log(event);
   const reports = JSON.parse(event.Records[0].body);
   console.log(reports);
